@@ -40,11 +40,7 @@ dependencies {
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
-    
-    // Usar libreria desde repositorio de github utilizando jitpack
-    // Ver => https://jitpack.io/
-    implementation 'com.github.esotericsoftware:jsonbeans:master'
-    
+        
 	// https://mvnrepository.com/artifact/org.apache.poi/poi
 	compile group: 'org.apache.poi', name: 'poi', version: '4.0.1'
 	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
