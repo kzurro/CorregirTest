@@ -3,6 +3,12 @@ package com.acing.examen;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * @author kzurro
+ * 
+ *  Clase core de la aplicación con los metodos para corregir los examenes obtenidos y poniendo asigando nombre a cada alumnos
+ */
 public class GestorCorrecion implements ICorrector {
 
 	@Override

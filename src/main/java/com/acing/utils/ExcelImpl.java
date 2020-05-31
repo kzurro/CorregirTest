@@ -16,6 +16,13 @@ import com.acing.examen.Plantilla;
 
 
 
+/**
+ * @author kzurro
+ * 
+ * Clase para generar archivo .xlsx 
+ * Está implementada para poner el nombre del archivo que recibe del serializador de la plantilla  y la fecha de cuando se genera
+ *
+ */
 public class ExcelImpl implements IExcel {
 
 	private final String carpetaExcel = "";

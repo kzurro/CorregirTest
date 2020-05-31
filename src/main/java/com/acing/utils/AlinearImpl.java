@@ -4,6 +4,11 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 
+/**
+ * @author kzurro
+ * 
+ *Clase para alinear el texto en la celdas tanto horizontalmenete como verticalmente
+ */
 
 public class AlinearImpl implements IAlinear {
 

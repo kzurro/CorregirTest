@@ -24,6 +24,13 @@ import com.acing.utils.ICelda;
 import com.acing.utils.IEstilo;
 import com.acing.utils.IExcel;
 
+
+
+/**
+ * @author kzurro
+ *
+ *Clase que tiene el método que genera el excel pasandole por argumentos los datos obtenidos del serializador
+ */
 public class Notas {
 
 	ICelda celda;

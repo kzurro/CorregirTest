@@ -8,6 +8,13 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 
 
 
+/**
+ * @author kzurro
+ *
+ *Clase para generar Celdas con estilo o sin el 
+ *se ha utilizado la libreria de StingUtilis para quitar los acentos a los strings
+ *<a href="https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/StringUtils.html">Ver</a>
+ */
 public class CeldaImpl implements ICelda{
 	
 	private StringUtils stringUtils;

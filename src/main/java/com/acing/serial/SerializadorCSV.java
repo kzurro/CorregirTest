@@ -12,11 +12,22 @@ import com.acing.examen.OpcionRespuesta;
 import com.acing.examen.Plantilla;
 import com.acing.examen.Respuesta;
 
+/**
+ * @author kzurro
+ *
+ *         Clase para generar los distintos sereializadores que hacen falta para
+ *         recoger los datos para generar el excel
+ */
 public class SerializadorCSV {
 
 	public SerializadorCSV() {
 	}
 
+	/**
+	 * @author kzurro
+	 *
+	 *         Metodo para obtener los examenes
+	 */
 	public static List<Examen> getEvaluables(String rutaArchivo) {
 		List<Examen> evaluablesLeidos = new ArrayList<>();
 
@@ -34,7 +45,13 @@ public class SerializadorCSV {
 
 		return evaluablesLeidos;
 	}
-	
+
+	/**
+	 * @author kzurro
+	 *
+	 *         Metodo para obtener los evaluados
+	 */
+
 	public static List<Evaluado> getEvaluados(String rutaArchivo) {
 		List<Evaluado> evaluadosLeidos = new ArrayList<>();
 
@@ -53,15 +70,26 @@ public class SerializadorCSV {
 		return evaluadosLeidos;
 	}
 
+	/**
+	 * @author kzurro
+	 *
+	 *         Metodo que va cogiendo linea por linea el para codigo, alumnos. Se le
+	 *         pued epasar "codAnumno;nombre" o "codAlumno,nombre"
+	 */
 	private static Evaluado deserializarEvaluados(String linea) {
 		linea = linea.replace("\"", "");
-		String[] campos = linea.indexOf(";") != -1? linea.split(";") : linea.split(",");
+		String[] campos = linea.indexOf(";") != -1 ? linea.split(";") : linea.split(",");
 		String codigo = campos[0];
 		String nombre = campos[1];
 		Evaluado evaluado = new Evaluado(codigo, nombre);
 		return evaluado;
 	}
 
+	/**
+	 * @author kzurro
+	 *
+	 *         Metodo que construye la plantilla
+	 */
 	public static Plantilla getPlantilla(String rutaArchivo) {
 
 		try (BufferedReader reader = new BufferedReader(
@@ -89,6 +117,11 @@ public class SerializadorCSV {
 
 	}
 
+	/**
+	 * @author kzurro
+	 *
+	 *         Metodo que va construyendo Examen por cada linbea que se serializa
+	 */
 	private static Examen deserializarEvaluables(String linea) {
 		linea = linea.replace(",\"", "¥\"");
 		linea = linea.replace("\"", "");
@@ -115,6 +148,12 @@ public class SerializadorCSV {
 		return examen;
 	}
 
+	/**
+	 * @author kzurro
+	 *
+	 *         metodo para obtener el tipo de distractor y obviar el texto que le
+	 *         sigue
+	 */
 	private static String getOpcionRespuesta(String string) {
 		String opcion = "";
 		int indice = string.length();

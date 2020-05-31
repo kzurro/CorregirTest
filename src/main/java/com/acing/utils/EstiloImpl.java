@@ -6,6 +6,15 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+
+
+/**
+ * @author kzurro
+ * 
+ *Clase para dar estilos a las celdas
+ *
+ *<a href="http://poi.apache.org/apidocs/4.1/org/apache/poi/xssf/model/Styles.html">Ver</a>
+ */
 public class EstiloImpl implements IEstilo {
 
 	IAlinear alinear;
