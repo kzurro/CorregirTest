@@ -1,0 +1,36 @@
+package com.acing.utils;
+
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+
+
+
+public class CeldaImpl implements ICelda{
+	
+	private StringUtils stringUtils;
+
+	@Override
+	public XSSFCell getCelda(XSSFRow row, int celda, String value) {
+		XSSFCell cell = (XSSFCell) row.createCell((short) celda);
+		String valor = stringUtils.stripAccents(value);
+		cell.setCellValue(valor);
+		return cell;
+	}
+
+	@Override
+	public XSSFCell getCeldaConEstilo(XSSFRow row, int celda, String value, XSSFCellStyle style) {
+		XSSFCell cell = getCelda(row, celda, value);
+		cell.setCellStyle(style);
+		return cell;
+	}
+
+	public CeldaImpl() {
+		this.stringUtils = new StringUtils();
+		
+	}
+	
+	
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="com.acing.app" project="testCorreccion" 
+    file="/testCorreccion/src/main/java/com/acing/app" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="136" y="59"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="com.acing.examen" project="testCorreccion" 
+    file="/testCorreccion/src/main/java/com/acing/examen" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="132" x="258" y="34"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="com.acing.excel" project="testCorreccion" 
+    file="/testCorreccion/src/main/java/com/acing/excel" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="117" x="500" y="34"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="com.acing.serial" project="testCorreccion" 
+    file="/testCorreccion/src/main/java/com/acing/serial" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="118" x="79" y="192"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="5" language="java" name="com.acing.utils" project="testCorreccion" 
+    file="/testCorreccion/src/main/java/com/acing/utils" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="428" y="225"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
