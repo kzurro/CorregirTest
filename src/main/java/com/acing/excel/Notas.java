@@ -23,6 +23,8 @@ import com.acing.utils.IAlinear;
 import com.acing.utils.ICelda;
 import com.acing.utils.IEstilo;
 import com.acing.utils.IExcel;
+import com.acing.utils.TipoAlineadoHorizontal;
+import com.acing.utils.TipoAlineadoVertical;
 
 
 
@@ -55,7 +57,7 @@ public class Notas {
 		spreadsheet.setColumnWidth(1, 8000);
 		spreadsheet.setColumnWidth(2, 2000);
 		spreadsheet.setColumnWidth(3, 2000);
-		spreadsheet.setColumnWidth(4, 3000);
+		spreadsheet.setColumnWidth(4, 3600);
 		spreadsheet.setColumnWidth(5, 2000);
 		XSSFRow row = spreadsheet.createRow(0);
 		XSSFCell cell = celda.getCelda(row, 0, "Número");
@@ -64,6 +66,7 @@ public class Notas {
 		estilo.setColorBordesGruesos(style, true, true, true, true);
 		cell.setCellStyle(style);
 		cell = celda.getCeldaConEstilo(row, 1, "Alumno", style);
+		alinear.setAlinearHorizontalVertical(style, TipoAlineadoHorizontal.CENTRO, TipoAlineadoVertical.CENTER);
 		cell = celda.getCeldaConEstilo(row, 2, "Aciertos", style);
 		cell = celda.getCeldaConEstilo(row, 3, "Errores", style);
 		cell = celda.getCeldaConEstilo(row, 4, "No Contestadas", style);
@@ -76,7 +79,9 @@ public class Notas {
 		XSSFCellStyle styleSuspenso = estilo.getEstilo(workbook);
 		estilo.setFuente(workbook, styleSuspenso, tamanio, tipoLetra, false, true);
 		estilo.setColorBordesFinos(styleSuspenso, true, true, true, true);
+		alinear.setAlinearHorizontalVertical(styleSuspenso, TipoAlineadoHorizontal.CENTRO, TipoAlineadoVertical.CENTER);
 		XSSFCellStyle styleNotas = estilo.getEstilo(workbook);
+		alinear.setAlinearHorizontalVertical(styleNotas, TipoAlineadoHorizontal.CENTRO, TipoAlineadoVertical.CENTER);
 		int alumnos = resultados.size();
 
 		for (int i = 0; i < alumnos; i++) {

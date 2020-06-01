@@ -1,26 +1,27 @@
 package com.acing.utils;
 
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Locale;
 
+import org.apache.poi.ooxml.POIXMLProperties;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.acing.examen.Plantilla;
 
-
-
-
-
 /**
  * @author kzurro
  * 
- * Clase para generar archivo .xlsx 
- * Está implementada para poner el nombre del archivo que recibe del serializador de la plantilla  y la fecha de cuando se genera
+ *         Clase para generar archivo .xlsx Está implementada para poner el
+ *         nombre del archivo que recibe del serializador de la plantilla y la
+ *         fecha de cuando se genera
  *
  */
 public class ExcelImpl implements IExcel {
@@ -39,6 +40,16 @@ public class ExcelImpl implements IExcel {
 
 	@Override
 	public FileOutputStream getCierreExcel(XSSFWorkbook workbook, Plantilla plantilla) throws IOException {
+		POIXMLProperties xmlProps = workbook.getProperties();
+		POIXMLProperties.CoreProperties coreProps = xmlProps.getCoreProperties();
+		POIXMLProperties.ExtendedProperties apPropert = xmlProps.getExtendedProperties();
+		coreProps.setCreator("DptoSIC");
+		coreProps.setDescription("Calificaciones de :" + plantilla.getAsigantura());
+		coreProps.setCategory("Calificaciones");
+		coreProps.setKeywords("Notas," + " Calificaciones, " + plantilla.getAsigantura());
+		apPropert.getUnderlyingProperties().setApplication("corregirDIM");
+		coreProps.setTitle("Notas" + plantilla.getAsigantura());
+
 		FileOutputStream out = new FileOutputStream(
 				new File(getCarpetaExcel() + getNombreArchivo(plantilla) + ".xlsx"));
 		workbook.write(out);
@@ -75,7 +86,5 @@ public class ExcelImpl implements IExcel {
 
 	public ExcelImpl() {
 	}
-	
-	
 
 }

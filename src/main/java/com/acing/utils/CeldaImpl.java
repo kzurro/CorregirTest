@@ -12,7 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
  * @author kzurro
  *
  *Clase para generar Celdas con estilo o sin el 
- *se ha utilizado la libreria de StingUtilis para quitar los acentos a los strings
+ *se ha utilizado la libreria de StingUtilis para quitar los acentos a los strings descomentar linea value = stringUtils.stripAccents(value);
  *<a href="https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/StringUtils.html">Ver</a>
  */
 public class CeldaImpl implements ICelda{
@@ -22,8 +22,8 @@ public class CeldaImpl implements ICelda{
 	@Override
 	public XSSFCell getCelda(XSSFRow row, int celda, String value) {
 		XSSFCell cell = (XSSFCell) row.createCell((short) celda);
-		String valor = stringUtils.stripAccents(value);
-		cell.setCellValue(valor);
+		//value = stringUtils.stripAccents(value);
+		cell.setCellValue(value);
 		return cell;
 	}
 
