@@ -54,7 +54,7 @@ public class Notas {
 		XSSFWorkbook workbook = excel.getExcel();
 		XSSFSheet spreadsheet = excel.getHoja(workbook);
 		
-		spreadsheet.setColumnWidth(1, 8000);
+		spreadsheet.setColumnWidth(1, 9000);
 		spreadsheet.setColumnWidth(2, 2000);
 		spreadsheet.setColumnWidth(3, 2000);
 		spreadsheet.setColumnWidth(4, 3600);
@@ -75,13 +75,13 @@ public class Notas {
 		XSSFCellStyle styleAlumnos = estilo.getEstilo(workbook);
 		estilo.setFuente(workbook, style, tamanio, tipoLetra, false, false);
 		estilo.setColorBordesFinos(styleAlumnos, true, true, true, true);
+		alinear.setAlinearHorizontalVertical(styleAlumnos, TipoAlineadoHorizontal.CENTRO, TipoAlineadoVertical.CENTER);
 		
 		XSSFCellStyle styleSuspenso = estilo.getEstilo(workbook);
 		estilo.setFuente(workbook, styleSuspenso, tamanio, tipoLetra, false, true);
 		estilo.setColorBordesFinos(styleSuspenso, true, true, true, true);
 		alinear.setAlinearHorizontalVertical(styleSuspenso, TipoAlineadoHorizontal.CENTRO, TipoAlineadoVertical.CENTER);
 		XSSFCellStyle styleNotas = estilo.getEstilo(workbook);
-		alinear.setAlinearHorizontalVertical(styleNotas, TipoAlineadoHorizontal.CENTRO, TipoAlineadoVertical.CENTER);
 		int alumnos = resultados.size();
 
 		for (int i = 0; i < alumnos; i++) {

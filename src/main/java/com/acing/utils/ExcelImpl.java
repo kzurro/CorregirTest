@@ -49,6 +49,7 @@ public class ExcelImpl implements IExcel {
 		coreProps.setKeywords("Notas," + " Calificaciones, " + plantilla.getAsigantura());
 		apPropert.getUnderlyingProperties().setApplication("corregirDIM");
 		coreProps.setTitle("Notas" + plantilla.getAsigantura());
+		coreProps.setSubjectProperty("Calificaciones DIM " + plantilla.getAsigantura());
 
 		FileOutputStream out = new FileOutputStream(
 				new File(getCarpetaExcel() + getNombreArchivo(plantilla) + ".xlsx"));
