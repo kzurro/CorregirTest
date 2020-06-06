@@ -26,5 +26,7 @@ hs_err_pid*
 
 
 #codigo que no se usa
-/noSeUsa
+/noSeUsa/
 /build/
+/data2/
+/data3/
