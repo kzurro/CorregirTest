@@ -38,8 +38,6 @@ public abstract class Evaluacion implements Evaluable{
 	public Evaluacion(String nombre, List<Respuesta> preguntas) {
 		setNombre(nombre);
 		setPreguntas(preguntas);
-//		this.preguntas = new ArrayList<>();
-//		this.preguntas.addAll(preguntas);
 	}
 	
 	

@@ -101,14 +101,16 @@ public class SerializadorCSV {
 			String asignatura = campos[0];
 			String numeroDistractoresString = campos[1];
 			int numeroDistractores = Integer.parseInt(numeroDistractoresString);
+			String cuentanErroresString = campos[2];
+			boolean cuentanErrores = Boolean.parseBoolean(cuentanErroresString);
 			List<Respuesta> preguntas = new ArrayList<>();
-			for (int i = 2; i < campos.length; i++) {
+			for (int i = 3; i < campos.length; i++) {
 				String opcion = campos[i];
 				OpcionRespuesta opcionRespuesta = OpcionRespuesta.valueOf(opcion);
 				Respuesta respuesta = new Respuesta(i - 1, opcionRespuesta);
 				preguntas.add(respuesta);
 			}
-			Plantilla plantilla = new Plantilla("plantilla", numeroDistractores, preguntas, asignatura);
+			Plantilla plantilla = new Plantilla("Plantilla", asignatura, preguntas, numeroDistractores, cuentanErrores);
 			return plantilla;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -120,15 +122,16 @@ public class SerializadorCSV {
 	/**
 	 * @author kzurro
 	 *
-	 *         Metodo que va construyendo Examen por cada linbea que se serializa
+	 *         Metodo que va construyendo Examen por cada linea que se serializa
 	 */
 	private static Examen deserializarEvaluables(String linea) {
 		linea = linea.replace(",\"", "¥\"");
 		linea = linea.replace("\"", "");
+		int c = isGoogleForm(linea);
 		String[] campos = linea.split("¥");
-		String nombre = campos[0];
+		String nombre = campos[c];
 		List<Respuesta> respuestas = new ArrayList<>();
-		for (int i = 1; i < campos.length; i++) {
+		for (int i = c + 1; i < campos.length; i++) {
 			campos[i] = getOpcionRespuesta(campos[i]);
 			String opcion;
 			OpcionRespuesta opcionRespuesta;
@@ -146,6 +149,18 @@ public class SerializadorCSV {
 		Examen examen = new Examen(nombre, respuestas);
 
 		return examen;
+	}
+
+	/**
+	 * @author kzurro
+	 *
+	 *         metodo que asigna el valor 1 si el formulario es de google y 0 sino
+	 *         es de google
+	 */
+
+	private static int isGoogleForm(String linea) {
+		// TODO Auto-generated method stub
+		return (linea.indexOf("EET¥") != -1) ? 1 : 0;
 	}
 
 	/**

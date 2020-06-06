@@ -59,24 +59,40 @@ public class CorregibleImpl implements ICorregible {
 		setNombre(nombre);
 	}
 
-	@Override
-	public void setCorreccion(int numDistractores) {
-		double nota = (getAciertos() - (getErrores() / (numDistractores - 1)))
-				* (10.0 / (getAciertos() + getErrores() + getNoContestadas()));
-
-		
-		
-		setNota(formatearDecimales(nota, 3));
-
+	public static double formatearDecimales(double numero, Integer numeroDecimales) {
+		return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
 	}
 
 	@Override
 	public int getPreguntas() {
 		return (getAciertos() + getErrores() + getNoContestadas());
 	}
-	
-	public static double formatearDecimales(double numero, Integer numeroDecimales) {
-		return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
+
+	@Override
+	public void setCorreccionConErrores(int numDistractores) {
+		double nota = (getAciertos() - (getErrores() / (numDistractores - 1)))
+				* (10.0 / (getAciertos() + getErrores() + getNoContestadas()));
+
+		setNota(formatearDecimales(nota, 3));
+
+	}
+
+	@Override
+	public void setCorrecionSinErrores(int numDistractores) {
+		double nota = getAciertos() * (10.0 / (getAciertos() + getErrores() + getNoContestadas()));
+
+		setNota(formatearDecimales(nota, 3));
+
+	}
+
+	@Override
+	public void setCorrecion(int numDistractores, boolean cuentanFallos) {
+		if (cuentanFallos) {
+			setCorreccionConErrores(numDistractores);
+		}else {
+			setCorrecionSinErrores(numDistractores);
 		}
+
+	}
 
 }
