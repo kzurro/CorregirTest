@@ -14,9 +14,6 @@ import com.acing.examen.Plantilla;
 import com.acing.excel.Notas;
 import com.acing.serial.SerializadorCSV;
 
-
-
-
 public class App {
 
 	public static void main(String[] args) throws IOException {
@@ -41,53 +38,61 @@ public class App {
 		return string.substring(0, indice).replace(" ", "");
 
 	}
-	
+
 	/**
-	 * @author kzurro
-	 *metodo que busca los arhivos en la carpeta data/ y alimenta los serializadores 
-	 *, gestor de correccion y el generador de notas en archvi .xlsx.
-	 *La linea strings.remove(strings.indexOf("corregir.jar")); esta comentada
-	 *porque he determinado que el ejecutable va a estar en el mismo directorio que el .jar (o .exe en su caso)
-	 *y por lo tanto cuando se busca el nombre del archivo, el ejecutable lo tiene que obviar.
-	 *El boolean alu está para que el sereializador tenga en cuenta o no que existe, el archivo .alu no es obligatorio
+	 * @author kzurro metodo que busca los arhivos en la carpeta data/ y alimenta
+	 *         los serializadores , gestor de correccion y el generador de notas en
+	 *         archvi .xlsx.  El boolean alu,jar  están para que el sereializador tenga en cuenta o no que
+	 *         existe, el archivo .alu o .jar , asi lo convertimos en no es obligatorio el alu y al ejecutar obvia los ejecutables
 	 */
 	private static void getNotas() throws IOException {
-		String string = "";
+		String rutaString = "data/";
 		boolean alu = false;
+		boolean jar = false;
+		int indiceJar = 0;
 		List<String> strings = new ArrayList<>();
 
-		Files.walk(Paths.get("data/")).forEach(ruta -> {
+		Files.walk(Paths.get(rutaString)).forEach(ruta -> {
 
 			if (Files.isRegularFile(ruta)) {
 				strings.add(ruta.getFileName().toString());
 			}
 		});
 
+
 		for (String s : strings) {
-			if (s.endsWith(".pla")) {
+			if (s.endsWith(".alu")) {
 				alu = true;
 			}
+			if (s.endsWith(".jar"))  {
+				jar = true;
+				indiceJar = strings.indexOf(s);
+			}
+			
 		}
-		// strings.remove(strings.indexOf("corregir.jar"));
+		
+		if (jar) strings.remove(indiceJar);
+	
 
-		string = "data/";
-		string = string + getNombre(strings.get(0));
-
+		rutaString = rutaString + getNombre(strings.get(0));
 		GestorCorrecion gestor = new GestorCorrecion();
 
 		Plantilla plantilla;
 
 		SerializadorCSV serializadorCSV = new SerializadorCSV();
 
-		plantilla = serializadorCSV.getPlantilla(string + ".pla");
-
-		List<Examen> examenes = new ArrayList<>();
-		examenes = serializadorCSV.getEvaluables(string + ".csv");
+		plantilla = serializadorCSV.getPlantilla(rutaString + ".pla");
 		System.out.println(plantilla.toString());
 
-		List<Evaluado> evaluados = new ArrayList<>();
+		List<Examen> examenes = new ArrayList<>();
+		examenes = serializadorCSV.getEvaluables(rutaString + ".csv");
+		for (Examen e : examenes) {
+			System.out.println(e.toString());
+		}
 
-		evaluados = alu ? serializadorCSV.getEvaluados(string + ".alu") : null;
+		List<Evaluado> evaluados;// = new ArrayList<>();
+
+		evaluados = alu ? serializadorCSV.getEvaluados(rutaString + ".alu") : new ArrayList<>();
 
 		List<CorregibleImpl> resultados = gestor.getCorreccionesEnClaro(plantilla, examenes, evaluados);
 
