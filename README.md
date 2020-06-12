@@ -53,4 +53,4 @@ Proyecto [Gradle](build.gradle) en Java 8
 - [Commo-lang3](https://commons.apache.org/) para formatear `strings`
 
 ### Aplicación Dockerizada
-- [Docker](https://hub.docker.com/repository/docker/09012017/dim-corregir-jar)
+- [Docker](https://hub.docker.com/repository/docker/kzurro/dim-corregir-jar)
